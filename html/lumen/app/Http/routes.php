@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Foo;
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +16,13 @@
 
 $app->get('/', function () use ($app) {
     return $app->welcome();
+});
+
+$app->get('/foo', function() {
+    return Foo::all();
+});
+
+$app->get('/foo/{id}', function($id) use ($app) {
+    $foo = Foo::query()->findOrFail($id);
+    return view('foo', ['foo' => $foo]);
 });
