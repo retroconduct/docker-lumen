@@ -15,4 +15,7 @@ docker rm $(docker ps -a -q)
 docker-compose up
 
 ### access 
-http://localhost
+http://localhost:80
+
+### access db using a mysql client
+http://localhost:3306

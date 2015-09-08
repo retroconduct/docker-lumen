@@ -7,4 +7,5 @@ RUN apt-get update -y && \
     php5-mcrypt \
     php5-gd \
     php5-xdebug \
-    php5-curl
+    php5-curl \
+    php5-mysql

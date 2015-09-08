@@ -1,5 +1,19 @@
+mysql:
+  image: mysql:latest
+  volumes:
+   - /var/lib/mysql
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_ROOT_PASSWORD=password
+   - MYSQL_DATABASE=lumen
+   - MYSQL_USER=user
+   - MYSQL_PASSWORD=password
+
 php:
   build: ./php
+  links:
+    - mysql:stackmysql
   ports:
    - "9000:9000"
   volumes:
@@ -9,12 +23,10 @@ nginx:
   image: nginx:latest
   links:
     - php:stackphp
+    - mysql:stackmysql
   ports:
    - "80:80"
    - "443:443"
   volumes:
    - ./html/lumen:/usr/share/nginx/html:ro
    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-   # - ./sites/lumen.conf:/etc/nginx/sites-available/lumen.conf
-  # command: mkdir /etc/nginx/sites-enabled
-  # command: ln -sf /etc/nginx/sites-available/lumen.conf /etc/nginx/sites-enabled/lumen.conf
