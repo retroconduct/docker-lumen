@@ -1,4 +1,4 @@
-mysql:
+db:
   image: mysql:latest
   volumes:
    - /var/lib/mysql
@@ -10,20 +10,19 @@ mysql:
    - MYSQL_USER=user
    - MYSQL_PASSWORD=password
 
-php:
+phpfpm:
   build: ./php
   links:
-    - mysql:stackmysql
+    - db:db
   ports:
    - "9000:9000"
   volumes:
    - ./html/lumen:/srv/http
 
-nginx:
+server:
   image: nginx:latest
   links:
-    - php:stackphp
-    - mysql:stackmysql
+    - phpfpm:phpfpm
   ports:
    - "80:80"
    - "443:443"
