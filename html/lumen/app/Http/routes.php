@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Foo;
+use App\User;
 
 
 /*
@@ -18,11 +18,11 @@ $app->get('/', function () use ($app) {
     return $app->welcome();
 });
 
-$app->get('/foo', function() {
-    return Foo::all();
+$app->get('/users', function() {
+    return User::all();
 });
 
-$app->get('/foo/{id}', function($id) use ($app) {
-    $foo = Foo::query()->findOrFail($id);
-    return $foo;
+$app->get('/user/{id}', function($id) use ($app) {
+    $user = User::query()->findOrFail($id);
+    return $user;
 });

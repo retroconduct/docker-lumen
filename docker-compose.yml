@@ -1,6 +1,5 @@
 db:
-  # image: mysql:latest
-  build: ./mysql
+  image: mysql:latest
   container_name: db
   volumes:
    - /var/lib/mysql
