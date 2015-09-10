@@ -1,5 +1,7 @@
 db:
-  image: mysql:latest
+  # image: mysql:latest
+  build: ./mysql
+  container_name: db
   volumes:
    - /var/lib/mysql
   ports:
@@ -12,6 +14,7 @@ db:
 
 phpfpm:
   build: ./php
+  container_name: phpfpm
   links:
     - db:db
   ports:
@@ -21,6 +24,7 @@ phpfpm:
 
 server:
   image: nginx:latest
+  container_name: server
   links:
     - phpfpm:phpfpm
   ports:

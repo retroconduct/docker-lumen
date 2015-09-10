@@ -24,5 +24,5 @@ $app->get('/foo', function() {
 
 $app->get('/foo/{id}', function($id) use ($app) {
     $foo = Foo::query()->findOrFail($id);
-    return view('foo', ['foo' => $foo]);
+    return $foo;
 });
