@@ -19,7 +19,7 @@ phpfpm:
   ports:
    - "9000:9000"
   volumes:
-   - ./html/lumen:/srv/http
+   - /var/www/html:/srv/http
 
 server:
   image: nginx:latest
@@ -30,5 +30,5 @@ server:
    - "80:80"
    - "443:443"
   volumes:
-   - ./html/lumen:/usr/share/nginx/html
+   - /var/www/html:/usr/share/nginx/html
    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
