@@ -2,7 +2,7 @@ db:
   image: mysql:latest
   container_name: db
   volumes:
-   - /var/lib/mysql
+   - /var/www/mysql:/var/lib/mysql
   ports:
    - "3306:3306"
   environment:
