@@ -11,11 +11,18 @@ db:
    - MYSQL_USER=user
    - MYSQL_PASSWORD=password
 
+cache:
+  image: memcached:latest
+  container_name: cache
+  ports:
+   - "11211:11211"
+
 phpfpm:
   build: ./php
   container_name: phpfpm
   links:
     - db:db
+    - cache:cache
   ports:
    - "9000:9000"
   volumes:
