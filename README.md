@@ -19,9 +19,9 @@ docker rmi $(docker images -q)
 ## Lumen
 + in the .env file set DB_HOST to your db container vhost (in this case its called db)
 + in the .env file add MEMCACHED_HOST because it doesnt exists, and set it to your cache container vhost (in this case its called cache)
-+ chown www-data:www-data -R to your lumen root (makes it accessible by php-fpm to run migrations and etc.)
++ chown username:www-data -R to your lumen root (makes it accessible by php-fpm to run migrations and etc.)
 + create directory /var/www/mysql to store data from mysql container (you can change location and reconfigure later)
-+ sudo chown www-data:www-data -R storage/ (to give permissions to write for logs and such)
++ sudo chown username:www-data -R storage/ (to give permissions to write for logs and such)
 + docker exec phpfpm php /srv/http/artisan migrate (this will create a sample migration)
 + docker exec phpfpm php /srv/http/artisan db:seed (seeds with sample data)
 + go to http://localhost/users and you should all user records
