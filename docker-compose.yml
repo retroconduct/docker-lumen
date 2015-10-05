@@ -3,7 +3,7 @@ db:
   container_name: db
   volumes:
    - /var/www/mysql:/var/lib/mysql
-  ports:
+  expose:
    - "3306:3306"
   environment:
    - MYSQL_ROOT_PASSWORD=password
@@ -14,7 +14,7 @@ db:
 cache:
   image: memcached:latest
   container_name: cache
-  ports:
+  expose:
    - "11211:11211"
 
 phpfpm:
@@ -23,7 +23,7 @@ phpfpm:
   links:
     - db:db
     - cache:cache
-  ports:
+  expose:
    - "9000:9000"
   volumes:
    - /var/www/html:/srv/http
@@ -35,6 +35,7 @@ server:
     - phpfpm:phpfpm
   ports:
    - "80:80"
+  expose:
    - "443:443"
   volumes:
    - /var/www/html:/usr/share/nginx/html
